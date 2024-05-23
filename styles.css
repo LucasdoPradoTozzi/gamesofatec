@@ -1,0 +1,23 @@
+
+
+  html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    background-image: url("imgs/theroom.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+.tiny_imgs{
+  width: 70px;
+  height: 70px;
+}
+
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
