@@ -8,8 +8,21 @@ body {
     background-image: url("imgs/theroom.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    
+    background-repeat: no-repeat;  
+}
+
+#game-div {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  height: 100%;
+  width: 100%;
+  outline: 1px solid red;
+
+}
+
+#game-div > div {
+  outline: 1px solid blue;
 }
 
 .tiny_imgs{
@@ -17,7 +30,45 @@ body {
   height: 70px;
 }
 
-.item1 {
-  grid-column-start: 1;
-  grid-column-end: 3;
+.notebook-img{
+  grid-area: 6 / 6 / 6 / 8;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+}
+
+.leave-door{
+  grid-area: 4 / 5 / 9 / 6;
+}
+
+.leave-door:hover {
+  grid-area: 4 / 5 / 9 / 6;
+  cursor: pointer;
+}
+
+.paper-img{
+  grid-area: 9 / 4 / 10 / 5;
+  justify-self: end;
+  align-self: center;
+}
+
+.paper-img:hover{
+  grid-area: 9 / 4 / 10 / 5;
+  justify-self: end;
+  align-self: center;
+  cursor: pointer;
+}
+
+.modal-dialog {
+  max-width: none;
+  width: 100%;
+  height: 90%;
+  margin: 0;
+}
+
+.modal-content {
+  background-color: black;
+  color: green;
+  width: 100%;
+  height: 100% ;
 }
