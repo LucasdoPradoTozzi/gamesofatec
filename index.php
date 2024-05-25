@@ -15,32 +15,39 @@
       <div id="locked_door_warning" class="alert alert-danger alert-dismissible fade show">A porta está trancada, talvez eu devesse procurar a chave...</div>
     </div>
     <div class="paper-img"><img class="tiny_imgs" src="imgs/paperOnTheTable.png"></div>
+
+    <div class="second-room-door"></div>
   </div>
+
+
+
+
   <div class="modal fade" id="modal_notebook" tabindex="-1" role="dialog" aria-labelledby="modal_notebook_label" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <input id="number_of_the_question" hidden value="1">
           <h5 class="modal-title" id="modal_notebook_label">Responda se for capaz...</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="x">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div id="modal_change_div" class="modal-body">
           <form>
             <h2>Quem é o melhor dev da letmein:</h2>
-            <input type="radio" id="opcao1" name="opcao" value="opcao1">
+            <input type="radio" id="opcao1" name="opcao" value="1">
             <label for="opcao1">Rafa</label><br>
-            <input type="radio" id="opcao2" name="opcao" value="opcao2">
+            <input type="radio" id="opcao2" name="opcao" value="2">
             <label for="opcao2">Edu</label><br>
-            <input type="radio" id="opcao3" name="opcao" value="opcao3">
+            <input type="radio" id="opcao3" name="opcao" value="3">
             <label for="opcao3">Leandro</label><br>
-            <input type="radio" id="opcao4" name="opcao" value="opcao3">
+            <input type="radio" id="opcao4" name="opcao" value="4">
             <label for="opcao4">Mauricio</label><br>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary">Enviar</button>
+          <button type="button" id="send_notebook_question" class="btn btn-primary">Enviar</button>
         </div>
       </div>
     </div>
@@ -67,21 +74,31 @@
 
       });
 
-      if (!true) {
+      $('#send_notebook_question').on('click', function() {
         $.ajax({
-          url: url,
-          method: 'GET',
-          success: function(response) {
-            // Handle the successful response
-            $('#result').html('<pre>' + JSON.stringify(response, null, 2) + '</pre>');
+          type: 'POST',
+          url: '/ajax/ajax_notebook_quiz.php',
+          data: {
+            awnser: $('input[name="opcao"]:checked').val(),
+            numberOfTheQuestion: $('#number_of_the_question').val()
           },
-          error: function(xhr, status, error) {
-            // Handle errors
-            console.error(xhr, status, error);
-            $('#result').text('Error: ' + error);
+          success: function(data) {
+
+            data = JSON.parse(data);
+            if (data.correct == 'resposta correta!') {
+              $('#modal_notebook_label').html('Muito bem, próxima pergunta');
+              $('#modal_change_div').html(data.html);
+              $('#number_of_the_question').val(data.numberOfTheNextQuestion);
+            } else {
+              $('#modal_notebook_label').html('Lamentavel jovem, tente novamente');
+              $('#modal_change_div').html(data.html);
+              $('#number_of_the_question').val(1);
+            }
           }
         });
-      }
+      })
+
+
 
 
     });

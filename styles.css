@@ -73,8 +73,12 @@ body {
   height: 100% ;
 }
 
+.second-room-door{
+  grid-area: 5 / 9 / 10 / 10;
+}
+
 @media only screen and  (max-width:1400px){
   .leave-door{
-    grid-area: 5 / 5 / 8 / 6;
+    grid-area: 4 / 5 / 9 / 6;
   } 
 }
