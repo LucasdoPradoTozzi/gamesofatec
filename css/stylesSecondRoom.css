@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    background-image: url("../imgs/secondRoom.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;  
+}
+
+#game-div {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  height: 100%;
+  width: 100%;
+}
+
+.tiny_imgs{
+  width: 70px;
+  height: 70px;
+}

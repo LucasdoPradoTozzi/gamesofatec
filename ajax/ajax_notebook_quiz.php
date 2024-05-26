@@ -14,6 +14,8 @@ $htmlFirstQuestion = '<form>
                     <label for="opcao4">Mauricio</label><br>
                     </form>';
 
+$htmlCongratulations = "<h1>Parabéns! Você concluiu esse desafio, agora afaste-se do notebook pois ele irá explodir em 3...2...1...</h1>";
+
 if ($request['numberOfTheQuestion'] == 1) {
 
     $htmlChange = '<form>
@@ -56,6 +58,7 @@ if ($request['numberOfTheQuestion'] == 1) {
 
     if ($request['awnser'] == '1') {
         $awnser = 'resposta correta!';
+        $htmlChange = $htmlCongratulations;
     } else {
         $awnser = 'lamentavel jovem!';
         $htmlChange = $htmlFirstQuestion;
@@ -65,7 +68,7 @@ if ($request['numberOfTheQuestion'] == 1) {
     $arrayResponse = [
         'correct' => $awnser,
         'html' =>    $htmlChange,
-        'numberOfTheNextQuestion' =>  3
+        'numberOfTheNextQuestion' =>  0
     ];
 }
 echo json_encode($arrayResponse);
