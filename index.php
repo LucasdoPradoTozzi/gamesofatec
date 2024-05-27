@@ -25,6 +25,7 @@
             $('#button_new_game').on('click', function() {
                 localStorage.setItem("leaveDoorKey", 'noKey')
                 localStorage.setItem("rightDoorKey", 'noKey')
+                localStorage.setItem("folderAccess", 'No')
                 window.location.href = 'firstRoom.php';
             });
             $('#button_continue').on('click', function() {

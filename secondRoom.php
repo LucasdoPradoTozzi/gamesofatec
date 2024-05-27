@@ -16,8 +16,8 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
 
 <body>
     <div id="game_div">
-        <div id="pc_monitor" data-toggle="modal" data-target="#modal_pc_monitor">
-        </div>
+        <div id="pc_monitor" data-toggle="modal" data-target="#modal_pc_monitor"></div>
+        <div id="go_back_door"></div>
     </div>
     <div class="modal fade" id="modal_pc_monitor" tabindex="-1" role="dialog" aria-labelledby="modal_notebook_label" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -56,19 +56,34 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            $folderAccess = 'no';
+            $firstHtmlVirusPissed = '<p class="typewriter"> YOU KILLED HIM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
+            $secondHtmlVirusPissed = '<p class="typewriter"> YOU KILLED MY FRIEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
+            $thirdHtmlVirusPissed = '<p class="typewriter"> NOW I WILL... NOW I WILL............................</p>';
+            $fourthHtmlVirusPissed = '<p class="typewriter">KILL YOU!! I WILL DELETE YOUR EXISTENCE!!!!!!!!!!!!!!!!</p>';
+            $fifthHtmlVirusPissed = '<p class="typewriter"> KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL</p>';
+            $sixthHtmlVirusPissed = '<p class="typewriter"> THE END OF YOUR LIFE IS NEAR! WAIT FOR ME</p>';
+
             $("#cmd_input").keypress(function(event) {
                 if (event.keyCode === 13) {
                     $("#send_pc_monitor").click();
                 }
             });
 
+            $('#go_back_door').on('click', function() {
+                window.location.href = 'firstRoom.php';
+            });
+
             $("#send_pc_monitor").on('click', function() {
+                let folderAccessGetter = localStorage.getItem("folderAccess");
+                if (folderAccessGetter != null) $folderAccess = 'yes';
                 $.ajax({
                     type: 'POST',
                     url: '/ajax/ajax_pc_monitor.php',
                     data: {
                         input: $('#cmd_input').val(),
-                        numberOfTheQuestion: $('#number_of_the_question').val()
+                        numberOfTheQuestion: $('#number_of_the_question').val(),
+                        folderAccess: $folderAccess
                     },
                     success: function(data) {
 
@@ -78,6 +93,33 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
                             $('#number_of_the_question').val(data.numberOfTheNextQuestion);
                             $('#modal_change_div').html(data.html);
                             $('#cmd_input').val('');
+                            if (data.folderPermission == 1) {
+                                localStorage.setItem("folderAccess", 'Yes')
+                            }
+                            if (data.openLastDoor == 1) {
+                                localStorage.setItem("leaveDoorKey", 'Key')
+                            }
+                        } else if (data.correct == 'virusIsPissedOff') {
+                            $('#cmd_input').val('');
+
+                            $('#modal_change_div').html($firstHtmlVirusPissed);
+                            setTimeout(function() {
+                                $('#modal_change_div').html($secondHtmlVirusPissed);
+                                setTimeout(function() {
+                                    $('#modal_change_div').html($thirdHtmlVirusPissed);
+                                    setTimeout(function() {
+                                        $('#modal_change_div').html($fourthHtmlVirusPissed);
+                                        setTimeout(function() {
+                                            $('#modal_change_div').html($fifthHtmlVirusPissed);
+                                            setTimeout(function() {
+                                                $('#modal_change_div').html($sixthHtmlVirusPissed);
+                                            }, 3000);
+                                        }, 4000);
+                                    }, 3000);
+                                }, 3000);
+                            }, 3000);
+
+
                         } else {
                             $('#modal_change_div').html(data.html);
                             $('#cmd_input').val('');

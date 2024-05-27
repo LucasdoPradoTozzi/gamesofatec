@@ -25,6 +25,14 @@ body {
   grid-area: 5 / 1 / 8 / 3;
 }
 
+#go_back_door {
+  grid-area: 2 / 5 / 10 / 7;
+}
+
+#go_back_door:hover {
+  cursor: pointer;
+}
+
 #pc_monitor:hover {
   grid-area: 5 / 1 / 8 / 3;
   cursor: pointer;
