@@ -16,7 +16,6 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
 
 <body>
   <div id="game-div">
-    <button id="reset_cache">eu reseto o cache e nao devia estar aqui</button>
     <div id="notebook_div" data-toggle="modal" data-target="#modal_notebook" class="notebook-img"><img id="notebook_img" class="tiny_imgs" src="imgs/oldNotebook.png"></div>
     <div class="leave-door">
       <div id="locked_door_warning" class="alert alert-danger alert-dismissible fade show">A porta está trancada por algum mecanismo...</div>
@@ -74,8 +73,6 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script>
     $(document).ready(function() {
-      // localStorage.setItem("leaveDoorKey", 'noKey')
-      // localStorage.setItem("rightDoorKey", 'noKey')
       if (localStorage.getItem("rightDoorKey") == 'Key') {
         $('#notebook_div').remove();
       }
@@ -101,12 +98,6 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
         } else {
           window.location.href = 'secondRoom.php';
         }
-
-      });
-
-      $('#reset_cache').on('click', function() {
-        localStorage.setItem("leaveDoorKey", 'noKey')
-        localStorage.setItem("rightDoorKey", 'noKey')
 
       });
 

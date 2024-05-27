@@ -15,8 +15,28 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
 </head>
 
 <body>
-    <div id="game-div">
-
+    <div id="game_div">
+        <div id="pc_monitor" data-toggle="modal" data-target="#modal_pc_monitor">
+        </div>
+    </div>
+    <div class="modal fade" id="modal_pc_monitor" tabindex="-1" role="dialog" aria-labelledby="modal_notebook_label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input id="number_of_the_question" hidden value="1">
+                    <h5 class="modal-title" id="modal_pc_monitor_label">Algo está ocupando muita memória, ache o que é pelo terminal abaixo e termine o processo!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="x">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modal_change_div" class="modal-body">
+                    <br><br>
+                    <br><br>
+                </div>
+                <input id="cmd_input" style="background-color: black; color: green;">
+                <button type="button" id="send_pc_monitor"></button>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="modal_images">
@@ -36,6 +56,39 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            $("#cmd_input").keypress(function(event) {
+                if (event.keyCode === 13) {
+                    $("#send_pc_monitor").click();
+                }
+            });
+
+            $("#send_pc_monitor").on('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajax/ajax_pc_monitor.php',
+                    data: {
+                        input: $('#cmd_input').val(),
+                        numberOfTheQuestion: $('#number_of_the_question').val()
+                    },
+                    success: function(data) {
+
+                        data = JSON.parse(data);
+
+                        if (data.correct == 'yes') {
+                            $('#number_of_the_question').val(data.numberOfTheNextQuestion);
+                            $('#modal_change_div').html(data.html);
+                            $('#cmd_input').val('');
+                        } else {
+                            $('#modal_change_div').html(data.html);
+                            $('#cmd_input').val('');
+                        }
+
+                    }
+                });
+            });
+
+
+
 
 
         });
