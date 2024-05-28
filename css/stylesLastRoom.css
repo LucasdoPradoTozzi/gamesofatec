@@ -34,3 +34,11 @@ body {
   width: 162px;
   height: 162px;
 }
+
+#backpack{
+  grid-area: 10 / 10 / 10 / 11;
+}
+
+#backpack:hover{
+  cursor: pointer;
+}

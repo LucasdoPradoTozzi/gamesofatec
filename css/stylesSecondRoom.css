@@ -29,6 +29,14 @@ body {
   grid-area: 2 / 5 / 10 / 7;
 }
 
+#cabinet {
+  grid-area: 8 / 8 / 11 / 9;
+}
+
+#cabinet:hover {
+  cursor: pointer;
+}
+
 #go_back_door:hover {
   cursor: pointer;
 }
@@ -48,7 +56,7 @@ body {
   border-right: .15em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  letter-spacing: .1em; /* Adjust as needed */
   animation: 
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
@@ -74,6 +82,10 @@ body {
   position: fixed;
   padding: 0;
   margin: 0;
+}
+
+.virus {
+  color: red !important;
 }
 
 

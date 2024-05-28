@@ -1,9 +1,3 @@
-<?php
-
-$leaveDoorKey = isset($_COOKIE['leaveDoorKey']) ? $_COOKIE['leaveDoorKey'] : 'noKey';
-$rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'noKey';
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,7 +14,7 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
     <div class="leave-door">
       <div id="locked_door_warning" class="alert alert-danger alert-dismissible fade show">A porta está trancada por algum mecanismo...</div>
     </div>
-    <div class="paper-img"><img class="tiny_imgs" src="imgs/paperOnTheTable.png"></div>
+    <div id="paper_on_the_floor" class="paper-img"><img class="tiny_imgs" src="imgs/paperOnTheTable.png"></div>
 
     <div class="second-room-door">
       <div id="second_locked_door_warning" class="alert alert-danger alert-dismissible fade show">A porta está trancada, talvez eu devesse procurar a chave...</div>
@@ -87,6 +81,12 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
             $('#locked_door_warning').hide();
           }, 3000);
         }
+      });
+
+      $('#paper_on_the_floor').on('click', function() {
+        $("#title_modal_images").html("Você encontrou uma anotação!");
+        $('#img_modal').attr('src', 'imgs/paperOnTheFloor.jpeg');
+        $('#modal_images').modal('show');
       });
 
       $('.second-room-door').on('click', function() {

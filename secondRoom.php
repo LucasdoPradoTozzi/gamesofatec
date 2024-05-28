@@ -1,9 +1,3 @@
-<?php
-
-$leaveDoorKey = isset($_COOKIE['leaveDoorKey']) ? $_COOKIE['leaveDoorKey'] : 'noKey';
-$rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'noKey';
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,13 +12,14 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
     <div id="game_div">
         <div id="pc_monitor" data-toggle="modal" data-target="#modal_pc_monitor"></div>
         <div id="go_back_door"></div>
+        <div id="cabinet"></div>
     </div>
     <div class="modal fade" id="modal_pc_monitor" tabindex="-1" role="dialog" aria-labelledby="modal_notebook_label" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div id="modal_content" class="modal-content">
                 <div class="modal-header">
                     <input id="number_of_the_question" hidden value="1">
-                    <h5 class="modal-title" id="modal_pc_monitor_label">Algo está ocupando muita memória, ache o que é pelo terminal abaixo e termine o processo!</h5>
+                    <h5 class="modal-title" id="modal_pc_monitor_label">CMD.exe</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="x">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,9 +55,13 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
             $firstHtmlVirusPissed = '<p class="typewriter"> YOU KILLED HIM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
             $secondHtmlVirusPissed = '<p class="typewriter"> YOU KILLED MY FRIEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
             $thirdHtmlVirusPissed = '<p class="typewriter"> NOW I WILL... NOW I WILL............................</p>';
-            $fourthHtmlVirusPissed = '<p class="typewriter">KILL YOU!! I WILL DELETE YOUR EXISTENCE!!!!!!!!!!!!!!!!</p>';
+            $fourthHtmlVirusPissed = '<p class="typewriter">I WILL KILL YOU!! I WILL DELETE YOUR EXISTENCE!!!!!!!!!!!!!!!!</p>';
             $fifthHtmlVirusPissed = '<p class="typewriter"> KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL</p>';
-            $sixthHtmlVirusPissed = '<p class="typewriter"> THE END OF YOUR LIFE IS NEAR! WAIT FOR ME</p>';
+            $sixthHtmlVirusPissed = '<p class="typewriter"> THE END OF YOUR LIFE IS NEAR! WAIT FOR ME.......</p>';
+
+            if (localStorage.getItem("notebookFound") == 'Yes') {
+                $("#cabinet").remove();
+            }
 
             $("#cmd_input").keypress(function(event) {
                 if (event.keyCode === 13) {
@@ -72,6 +71,14 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
 
             $('#go_back_door').on('click', function() {
                 window.location.href = 'firstRoom.php';
+            });
+
+            $('#cabinet').on('click', function() {
+                $("#title_modal_images").html("Você encontrou um notebook! Ele parece estar conectado a rede local, talvez ele seja útil em algum lugar...");
+                $('#img_modal').attr('src', 'imgs/notebookConnected.png');
+                $('#modal_images').modal('show');
+                $("#cabinet").remove();
+                localStorage.setItem("notebookFound", 'Yes');
             });
 
             $("#send_pc_monitor").on('click', function() {
@@ -86,9 +93,7 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
                         folderAccess: $folderAccess
                     },
                     success: function(data) {
-
                         data = JSON.parse(data);
-
                         if (data.correct == 'yes') {
                             $('#number_of_the_question').val(data.numberOfTheNextQuestion);
                             $('#modal_change_div').html(data.html);
@@ -101,9 +106,9 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
                             }
                         } else if (data.correct == 'virusIsPissedOff') {
                             $('#cmd_input').val('');
-
                             $('#modal_change_div').html($firstHtmlVirusPissed);
                             setTimeout(function() {
+                                $("#modal_content").addClass("virus");
                                 $('#modal_change_div').html($secondHtmlVirusPissed);
                                 setTimeout(function() {
                                     $('#modal_change_div').html($thirdHtmlVirusPissed);
@@ -113,26 +118,22 @@ $rightDoorKey = isset($_COOKIE['rightDoorKey']) ? $_COOKIE['rightDoorKey'] : 'no
                                             $('#modal_change_div').html($fifthHtmlVirusPissed);
                                             setTimeout(function() {
                                                 $('#modal_change_div').html($sixthHtmlVirusPissed);
+                                                setTimeout(function() {
+                                                    $("#modal_content").removeClass("virus");
+                                                    $('#modal_change_div').html('');
+                                                }, 3000);
                                             }, 3000);
                                         }, 4000);
                                     }, 3000);
                                 }, 3000);
                             }, 3000);
-
-
                         } else {
                             $('#modal_change_div').html(data.html);
                             $('#cmd_input').val('');
                         }
-
                     }
                 });
             });
-
-
-
-
-
         });
     </script>
 </body>

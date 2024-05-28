@@ -11,13 +11,14 @@
 <body>
     <div id="game-div">
         <div id="final_boss"><img src="imgs/finalBoss3.png" class="boss_img"></div>
+        <div id="backpack"><img src="imgs/iconNotebook.jpg" class="tiny_imgs"></div>
     </div>
 
-    <div class="modal fade" id="modal_images">
+    <div class="modal fade" id="modal_connected_notebook">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 id="title_modal_images" class="modal-title">Título do Modal</h4>
+                    <h4 id="title_connected_notebook" class="modal-title">Título do Modal</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
