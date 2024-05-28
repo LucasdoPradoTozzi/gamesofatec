@@ -121,7 +121,7 @@
                                                 setTimeout(function() {
                                                     $("#modal_content").removeClass("virus");
                                                     $('#modal_change_div').html('');
-                                                }, 3000);
+                                                }, 5000);
                                             }, 3000);
                                         }, 4000);
                                     }, 3000);
