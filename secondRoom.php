@@ -123,7 +123,7 @@
 
             $("#send_pc_monitor").on('click', function() {
                 let folderAccessGetter = localStorage.getItem("folderAccess");
-                if (folderAccessGetter != null) folderAccess = 'yes';
+                if (folderAccessGetter == 'Yes') folderAccess = 'Yes';
                 $.ajax({
                     type: 'POST',
                     url: '/ajax/ajax_pc_monitor.php',

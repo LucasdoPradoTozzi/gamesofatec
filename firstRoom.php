@@ -80,6 +80,8 @@
           setTimeout(function() {
             $('#locked_door_warning').hide();
           }, 3000);
+        } else {
+          window.location.href = 'lastRoom.php';
         }
       });
 
@@ -151,10 +153,6 @@
           }
         });
       })
-
-
-
-
     });
   </script>
 </body>

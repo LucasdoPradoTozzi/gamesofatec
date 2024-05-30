@@ -37,10 +37,10 @@ if ($request['input'] == 'top') {
         </pre>";
 } elseif ($request['input'] == 'cd box-access') {
     $awnser = 'yes';
-    if ($request['folderAccess'] = 'yes') {
+    if ($request['folderAccess'] == 'Yes') {
         $htmlChange = " <pre>
             1234@user: cd box-access
-            open-door.exe
+            open-door.sh
             </pre>";
     } else {
         $htmlChange = " <pre>
@@ -60,6 +60,7 @@ if ($request['input'] == 'top') {
     $htmlChange = " <pre>
         1234@user: sudo chmod 755 box-access
         </pre>";
+    $permissionToTheFolder = 1;
 } elseif ($request['input'] == 'kill nemesis-helper') {
     $awnser = 'virusIsPissedOff';
     $htmlChange = "";
