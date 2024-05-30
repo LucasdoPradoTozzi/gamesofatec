@@ -32,6 +32,12 @@
     <script>
         $(document).ready(function() {
 
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Q' || event.key === 'q') {
+                    event.preventDefault();
+                    alert('The "Q" key was pressed!');
+                }
+            });
 
         });
     </script>

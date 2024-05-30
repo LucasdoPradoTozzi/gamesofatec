@@ -83,6 +83,13 @@
         }
       });
 
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Q' || event.key === 'q') {
+          event.preventDefault();
+          alert('The "Q" key was pressed!');
+        }
+      });
+
       $('#paper_on_the_floor').on('click', function() {
         $("#title_modal_images").html("Você encontrou uma anotação!");
         $('#img_modal').attr('src', 'imgs/paperOnTheFloor.jpeg');

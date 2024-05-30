@@ -26,6 +26,7 @@
                 localStorage.setItem("leaveDoorKey", 'noKey')
                 localStorage.setItem("rightDoorKey", 'noKey')
                 localStorage.setItem("folderAccess", 'No')
+                localStorage.setItem("notebookFound", 'No')
                 window.location.href = 'firstRoom.php';
             });
             $('#button_continue').on('click', function() {

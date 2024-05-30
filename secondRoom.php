@@ -73,8 +73,15 @@
                 window.location.href = 'firstRoom.php';
             });
 
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Q' || event.key === 'q') {
+                    event.preventDefault();
+                    alert('The "Q" key was pressed!');
+                }
+            });
+
             $('#cabinet').on('click', function() {
-                $("#title_modal_images").html("Você encontrou um notebook! Ele parece estar conectado a rede local, talvez ele seja útil em algum lugar...");
+                $("#title_modal_images").html('Você encontrou um notebook! Ele parece estar conectado a rede local, talvez ele seja útil em algum lugar...(para utilizar o notebook, pressione a tecla "Q")');
                 $('#img_modal').attr('src', 'imgs/notebookConnected.png');
                 $('#modal_images').modal('show');
                 $("#cabinet").remove();
@@ -120,8 +127,8 @@
                                                 $('#modal_change_div').html($sixthHtmlVirusPissed);
                                                 setTimeout(function() {
                                                     $("#modal_content").removeClass("virus");
-                                                    $('#modal_change_div').html('');
-                                                }, 5000);
+                                                    $('#modal_change_div').html('<br><br><br><br><br>');
+                                                }, 10000);
                                             }, 3000);
                                         }, 4000);
                                     }, 3000);
