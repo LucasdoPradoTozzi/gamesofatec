@@ -32,15 +32,15 @@
         </div>
         <div id="modal_change_div" class="modal-body">
           <form>
-            <h2>Quem é o melhor dev da letmein:</h2>
+            <h2>O que o comando "top" exibe?</h2>
             <input type="radio" id="opcao1" name="opcao" value="1">
-            <label for="opcao1">Rafa</label><br>
+            <label for="opcao1">Uso de recursos dos processos em execução (CPU, memória, tempo de CPU)</label><br>
             <input type="radio" id="opcao2" name="opcao" value="2">
-            <label for="opcao2">Edu</label><br>
+            <label for="opcao2">Lista de todos os processos em execução no sistema</label><br>
             <input type="radio" id="opcao3" name="opcao" value="3">
-            <label for="opcao3">Leandro</label><br>
+            <label for="opcao3">Informações sobre o uso de memória por cada processo</label><br>
             <input type="radio" id="opcao4" name="opcao" value="4">
-            <label for="opcao4">Mauricio</label><br>
+            <label for="opcao4">Opções para ordenar e filtrar os processos listados</label><br>
           </form>
         </div>
         <div id="notebook_footer" class="modal-footer">
@@ -143,7 +143,6 @@
                   }, 3000);
                 }, 3000);
               }
-
             } else {
               $('#modal_notebook_label').html('Lamentavel jovem, tente novamente');
               $('#modal_change_div').html(data.html);
