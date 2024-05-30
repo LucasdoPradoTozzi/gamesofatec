@@ -32,50 +32,48 @@ if ($request['input'] == 'top') {
 } elseif ($request['input'] == 'ls') {
     $awnser = 'yes';
     $htmlChange = " <pre>
-        <p>1234@user: ls</p><br>
-
-        <p>box-access</p>
+        1234@user: ls
+        box-access
         </pre>";
 } elseif ($request['input'] == 'cd box-access') {
     $awnser = 'yes';
     if ($request['folderAccess'] = 'yes') {
         $htmlChange = " <pre>
-            <p>1234@user: cd box-access</p><br>
-    
-            <p>open-door.exe</p>
+            1234@user: cd box-access
+            open-door.exe
             </pre>";
     } else {
         $htmlChange = " <pre>
-            <p>1234@user: cd box-access</p><br>
-    
-            <p>bash: cd box-access: Permission denied</p>
+            1234@user: cd box-access
+            bash: cd box-access: Permission denied
             </pre>";
     }
-} elseif ($request['input'] == './open-door.exe') {
+} elseif ($request['input'] == 'bash open-door.sh') {
     $awnser = 'yes';
     $htmlChange = " <pre>
-        <p>1234@user: './open-door.exe'</p><br>
-        <p>the door is now open, but are you really prepared to go in?</p>
+        1234@user: 'bash open-door.sh'
+        the door is now open, but are you really prepared to go in?
         </pre>";
     $openLastDoor = 1;
 } elseif ($request['input'] == 'sudo chmod 755 box-access') {
     $awnser = 'yes';
     $htmlChange = " <pre>
-        <p>1234@user: sudo chmod 755 box-access</p><br>
+        1234@user: sudo chmod 755 box-access
         </pre>";
 } elseif ($request['input'] == 'kill nemesis-helper') {
     $awnser = 'virusIsPissedOff';
     $htmlChange = "";
 } else {
     $awnser = 'no';
-    $htmlChange = " <p>1234@user: " . $request['input'] . "</p>
-        <p>command not found</p>";
+    $htmlChange = "<pre>
+        1234@user: " . $request['input'] . "
+        command not found
+        </pre>";
 }
 
 $arrayResponse = [
     'correct' => $awnser,
     'html' => $htmlChange,
-    'numberOfTheNextQuestion' => 2,
     'folderPermission' => $permissionToTheFolder,
     'openLastDoor' => $openLastDoor
 ];

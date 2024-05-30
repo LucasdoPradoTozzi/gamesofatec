@@ -18,7 +18,6 @@
         <div class="modal-dialog" role="document">
             <div id="modal_content" class="modal-content">
                 <div class="modal-header">
-                    <input id="number_of_the_question" hidden value="1">
                     <h5 class="modal-title" id="modal_pc_monitor_label">CMD.exe</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="x">
                         <span aria-hidden="true">&times;</span>
@@ -33,7 +32,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="modal_images">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -104,7 +102,6 @@
                     success: function(data) {
                         data = JSON.parse(data);
                         if (data.correct == 'yes') {
-                            $('#number_of_the_question').val(data.numberOfTheNextQuestion);
                             $('#modal_change_div').html(data.html);
                             $('#cmd_input').val('');
                             if (data.folderPermission == 1) {
