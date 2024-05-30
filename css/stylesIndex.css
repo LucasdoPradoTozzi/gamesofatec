@@ -1,12 +1,14 @@
 body{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+  background-image: url("../imgs/indexBackground2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;  
 }
+
 #start_game {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,6 +22,8 @@ flex: 1 !important;
 }
 
 .typewriter {
+    text-shadow: 1px 1px 2px white;
+    color: gray;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -41,3 +45,28 @@ flex: 1 !important;
     from, to { border-color: transparent }
     50% { border-color: orange; }
   }
+
+  .styling-button {
+    border-radius: 10px; 
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+  }
+  .styling-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+
+  #start_buttons{
+    background-color: black !important;
+    border-radius: 5%;
+    padding: 10px;
+    display: grid; 
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center; 
+    justify-items: center;
+    align-items: center;
+  }
+

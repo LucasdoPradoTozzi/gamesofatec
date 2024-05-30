@@ -10,12 +10,11 @@
 
 <body>
     <div id="start_game">
-        <form action="#">
+        <div id="start_buttons">
             <h1 class="typewriter">Bem vindo ao Jogo!</h1>
-            <button type="button" class="btn" id="button_continue">Continuar</button>
-            <br>
-            <button type="button" class="btn" id="button_new_game">Novo Jogo</button>
-        </form>
+            <button type="button" class="btn styling-button" id="button_continue">Continuar</button>
+            <button type="button" class="btn styling-button" id="button_new_game">Novo Jogo</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

@@ -17,10 +17,6 @@ body {
   width: 100%;
 }
 
-#game_div > div {
-  outline: 1px solid blue;
-}
-
 #pc_monitor {
   grid-area: 5 / 1 / 8 / 3;
 }

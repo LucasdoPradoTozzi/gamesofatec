@@ -51,13 +51,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-            $folderAccess = 'no';
-            $firstHtmlVirusPissed = '<p class="typewriter"> YOU KILLED HIM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
-            $secondHtmlVirusPissed = '<p class="typewriter"> YOU KILLED MY FRIEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>';
-            $thirdHtmlVirusPissed = '<p class="typewriter"> NOW I WILL... NOW I WILL............................</p>';
-            $fourthHtmlVirusPissed = '<p class="typewriter">I WILL KILL YOU!! I WILL DELETE YOUR EXISTENCE!!!!!!!!!!!!!!!!</p>';
-            $fifthHtmlVirusPissed = '<p class="typewriter"> KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL</p>';
-            $sixthHtmlVirusPissed = '<p class="typewriter"> THE END OF YOUR LIFE IS NEAR! WAIT FOR ME.......</p>';
+            folderAccess = 'no';
+
+            arrayVirusPissed = [
+                '<p class="typewriter"> YOU KILLED HIM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>',
+                '<p class="typewriter"> YOU KILLED MY FRIEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>',
+                '<p class="typewriter"> NOW I WILL... NOW I WILL............................</p>',
+                '<p class="typewriter">I WILL KILL YOU!! I WILL DELETE YOUR EXISTENCE!!!!!!!!!!!!!!!!</p>',
+                '<p class="typewriter"> KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL KILL</p>',
+                '<p class="typewriter"> THE END OF YOUR LIFE IS NEAR! WAIT FOR ME.......</p>'
+            ];
 
             if (localStorage.getItem("notebookFound") == 'Yes') {
                 $("#cabinet").remove();
@@ -120,14 +123,14 @@
 
             $("#send_pc_monitor").on('click', function() {
                 let folderAccessGetter = localStorage.getItem("folderAccess");
-                if (folderAccessGetter != null) $folderAccess = 'yes';
+                if (folderAccessGetter != null) folderAccess = 'yes';
                 $.ajax({
                     type: 'POST',
                     url: '/ajax/ajax_pc_monitor.php',
                     data: {
                         input: $('#cmd_input').val(),
                         numberOfTheQuestion: $('#number_of_the_question').val(),
-                        folderAccess: $folderAccess
+                        folderAccess: folderAccess
                     },
                     success: function(data) {
                         data = JSON.parse(data);
@@ -142,18 +145,18 @@
                             }
                         } else if (data.correct == 'virusIsPissedOff') {
                             $('#cmd_input').val('');
-                            $('#modal_change_div').html($firstHtmlVirusPissed);
+                            $('#modal_change_div').html(arrayVirusPissed[0]);
                             setTimeout(function() {
                                 $("#modal_content").addClass("virus");
-                                $('#modal_change_div').html($secondHtmlVirusPissed);
+                                $('#modal_change_div').html(arrayVirusPissed[1]);
                                 setTimeout(function() {
-                                    $('#modal_change_div').html($thirdHtmlVirusPissed);
+                                    $('#modal_change_div').html(arrayVirusPissed[2]);
                                     setTimeout(function() {
-                                        $('#modal_change_div').html($fourthHtmlVirusPissed);
+                                        $('#modal_change_div').html(arrayVirusPissed[3]);
                                         setTimeout(function() {
-                                            $('#modal_change_div').html($fifthHtmlVirusPissed);
+                                            $('#modal_change_div').html(arrayVirusPissed[4]);
                                             setTimeout(function() {
-                                                $('#modal_change_div').html($sixthHtmlVirusPissed);
+                                                $('#modal_change_div').html(arrayVirusPissed[5]);
                                                 setTimeout(function() {
                                                     $("#modal_content").removeClass("virus");
                                                     $('#modal_change_div').html('<br><br><br><br><br>');
