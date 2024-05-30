@@ -13,6 +13,8 @@
         <div id="pc_monitor" data-toggle="modal" data-target="#modal_pc_monitor"></div>
         <div id="go_back_door"></div>
         <div id="cabinet"></div>
+        <div id=paper_in_the_table></div>
+        <div id="mouse"></div>
     </div>
     <div class="modal fade" id="modal_pc_monitor" tabindex="-1" role="dialog" aria-labelledby="modal_notebook_label" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -61,10 +63,38 @@
                 $("#cabinet").remove();
             }
 
+            if (localStorage.getItem("mouseIsOut") == 'Yes') {
+                $("#mouse").remove();
+            }
+
             $("#cmd_input").keypress(function(event) {
                 if (event.keyCode === 13) {
                     $("#send_pc_monitor").click();
                 }
+            });
+
+            $("#cmd_input").on("input", function(event) {
+                if (localStorage.getItem("mouseIsOut") != 'Yes') {
+                    event.preventDefault();
+                    $("#title_modal_images").html('Oh ooooh....');
+                    $('#img_modal').attr('src', 'imgs/blueScreenOfDeath.jpeg');
+                    $('#modal_images').modal('show');
+                    $("#cmd_input").val('');
+                }
+            });
+
+            $('#paper_in_the_table').on('click', function() {
+                $("#title_modal_images").html('Você encontrou uma anotação!');
+                $('#img_modal').attr('src', 'imgs/bookInTheTable.jpeg');
+                $('#modal_images').modal('show');
+            });
+
+            $('#mouse').on('click', function() {
+                $("#title_modal_images").html('Você retirou o mouse do computador! Ele vai deixar de interferir nos Inputs do seu teclado!');
+                $('#img_modal').attr('src', 'imgs/oldMouse.jpg');
+                $('#modal_images').modal('show');
+                $('#mouse').remove();
+                localStorage.setItem("mouseIsOut", 'Yes')
             });
 
             $('#go_back_door').on('click', function() {

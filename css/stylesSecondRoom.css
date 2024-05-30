@@ -88,4 +88,19 @@ body {
   color: red !important;
 }
 
+#paper_in_the_table {
+  grid-area: 9 / 1 / 10 / 3;
+}
+
+#paper_in_the_table:hover {
+  cursor: pointer;
+}
+
+#mouse {
+  grid-area: 8 / 3 / 8 / 3;
+}
+
+#mouse:hover {
+  cursor: pointer;
+}
 
