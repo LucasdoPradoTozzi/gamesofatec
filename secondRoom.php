@@ -76,7 +76,9 @@
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Q' || event.key === 'q') {
                     event.preventDefault();
-                    alert('The "Q" key was pressed!');
+                    if (localStorage.getItem("notebookFound") == 'Yes') {
+                        alert('Não posso usar isso aqui, devo aguardar o momento certo...');
+                    }
                 }
             });
 
