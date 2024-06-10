@@ -31,45 +31,45 @@ if ($request['input'] == 'top') {
         </pre>';
 } elseif ($request['input'] == 'ls') {
     $awnser = 'yes';
-    $htmlChange = " <pre>
+    $htmlChange = ' <pre style="color: green;">
         1234@user: ls
         box-access
-        </pre>";
+        </pre>';
 } elseif ($request['input'] == 'cd box-access') {
     $awnser = 'yes';
     if ($request['folderAccess'] == 'Yes') {
-        $htmlChange = " <pre>
+        $htmlChange = ' <pre style="color: green;">
             1234@user: cd box-access
             open-door.sh
-            </pre>";
+            </pre>';
     } else {
-        $htmlChange = " <pre>
+        $htmlChange = ' <pre style="color: green;">
             1234@user: cd box-access
             bash: cd box-access: Permission denied
-            </pre>";
+            </pre>';
     }
 } elseif ($request['input'] == 'bash open-door.sh') {
     $awnser = 'yes';
-    $htmlChange = " <pre>
-        1234@user: 'bash open-door.sh'
+    $htmlChange = ' <pre style="color: green;">
+        1234@user: bash open-door.sh
         the door is now open, but are you really prepared to go in?
-        </pre>";
+        </pre>';
     $openLastDoor = 1;
 } elseif ($request['input'] == 'sudo chmod 755 box-access') {
     $awnser = 'yes';
-    $htmlChange = " <pre>
+    $htmlChange = ' <pre style="color: green;">
         1234@user: sudo chmod 755 box-access
-        </pre>";
+        </pre>';
     $permissionToTheFolder = 1;
 } elseif ($request['input'] == 'kill nemesis-helper') {
     $awnser = 'virusIsPissedOff';
     $htmlChange = "";
 } else {
     $awnser = 'no';
-    $htmlChange = "<pre>
-        1234@user: " . $request['input'] . "
+    $htmlChange = '<pre style="color: green;">
+        1234@user: ' . $request['input'] . '
         command not found
-        </pre>";
+        </pre>';
 }
 
 $arrayResponse = [
